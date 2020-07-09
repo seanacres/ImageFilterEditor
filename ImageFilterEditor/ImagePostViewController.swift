@@ -14,7 +14,7 @@ class ImagePostViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gaussBlurSlider: UISlider!
-    @IBOutlet weak var halftoneFilterSwitch: UISwitch!
+    @IBOutlet weak var tiledFilterSwitch: UISwitch!
     
     var originalImage: UIImage? {
         didSet {
@@ -43,9 +43,11 @@ class ImagePostViewController: UIViewController {
         }
     }
     
+    var outputImage: CIImage?
+    
     private let context = CIContext()
     private let gaussianBlurFilter = CIFilter.gaussianBlur()
-    private let halftoneFilter = CIFilter.cmykHalftone()
+    private let tiledFilter = CIFilter.eightfoldReflectedTile()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -58,8 +60,17 @@ class ImagePostViewController: UIViewController {
         gaussianBlurFilter.inputImage = inputImage
         gaussianBlurFilter.radius = gaussBlurSlider.value
         
-        guard let outputImage = gaussianBlurFilter.outputImage else { return nil }
+        outputImage = gaussianBlurFilter.outputImage
+            
+        if tiledFilterSwitch.isOn {
+            tiledFilter.inputImage = gaussianBlurFilter.outputImage
+            outputImage = tiledFilter.outputImage
+        }
         
+        
+        
+        
+        guard let outputImage = outputImage else { return nil }
         guard let renderedCGImage = context.createCGImage(outputImage, from: inputImage.extent) else { return nil }
         
         return UIImage(cgImage: renderedCGImage)
@@ -92,6 +103,10 @@ class ImagePostViewController: UIViewController {
     }
     
     @IBAction func gaussBlurChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func halftoneSwitchChanged(_ sender: Any) {
         updateImage()
     }
     

@@ -56,8 +56,11 @@
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7d6-EB-wrn">
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="7d6-EB-wrn">
                                                                 <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                                                <connections>
+                                                                    <action selector="halftoneSwitchChanged:" destination="3k1-th-poL" eventType="valueChanged" id="k7O-Cl-SO5"/>
+                                                                </connections>
                                                             </switch>
                                                         </subviews>
                                                     </stackView>
@@ -97,8 +100,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gaussBlurSlider" destination="wsi-MQ-qIF" id="LRq-34-fK1"/>
-                        <outlet property="halftoneFilterSwitch" destination="7d6-EB-wrn" id="uI5-Hd-hoj"/>
                         <outlet property="imageView" destination="av8-dy-snJ" id="ztA-Fs-VJU"/>
+                        <outlet property="tiledFilterSwitch" destination="7d6-EB-wrn" id="uI5-Hd-hoj"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="UjC-wJ-wfy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
