@@ -15,6 +15,9 @@ class ImagePostViewController: UIViewController {
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gaussBlurSlider: UISlider!
     @IBOutlet weak var tiledFilterSwitch: UISwitch!
+    @IBOutlet weak var bloomFilterSwitch: UISwitch!
+    @IBOutlet weak var gloomFilterSwitch: UISwitch!
+    @IBOutlet weak var pixellateFilterSwitch: UISwitch!
     
     var originalImage: UIImage? {
         didSet {
@@ -48,6 +51,9 @@ class ImagePostViewController: UIViewController {
     private let context = CIContext()
     private let gaussianBlurFilter = CIFilter.gaussianBlur()
     private let tiledFilter = CIFilter.eightfoldReflectedTile()
+    private let bloomFilter = CIFilter.bloom()
+    private let gloomFilter = CIFilter.gloom()
+    private let pixellateFilter = CIFilter.pixellate()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,12 +69,27 @@ class ImagePostViewController: UIViewController {
         outputImage = gaussianBlurFilter.outputImage
             
         if tiledFilterSwitch.isOn {
-            tiledFilter.inputImage = gaussianBlurFilter.outputImage
+            tiledFilter.inputImage = outputImage
             outputImage = tiledFilter.outputImage
         }
         
+        if bloomFilterSwitch.isOn {
+            bloomFilter.inputImage = outputImage
+            bloomFilter.radius = 30
+            outputImage = bloomFilter.outputImage
+        }
         
+        if gloomFilterSwitch.isOn {
+            gloomFilter.inputImage = outputImage
+            gloomFilter.intensity = 0.9
+            outputImage = gloomFilter.outputImage
+        }
         
+        if pixellateFilterSwitch.isOn {
+            pixellateFilter.inputImage = outputImage
+            pixellateFilter.scale = 24
+            outputImage = pixellateFilter.outputImage
+        }
         
         guard let outputImage = outputImage else { return nil }
         guard let renderedCGImage = context.createCGImage(outputImage, from: inputImage.extent) else { return nil }
@@ -106,10 +127,21 @@ class ImagePostViewController: UIViewController {
         updateImage()
     }
     
-    @IBAction func halftoneSwitchChanged(_ sender: Any) {
+    @IBAction func tiledSwitchChanged(_ sender: Any) {
         updateImage()
     }
     
+    @IBAction func bloomSwitchChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func gloomSwitchChanged(_ sender: Any) {
+        updateImage()
+    }
+    
+    @IBAction func pixellateSwitchChanged(_ sender: Any) {
+        updateImage()
+    }
 }
 
 extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
