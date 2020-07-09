@@ -26,7 +26,34 @@
                                     </imageView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaK-Ma-SNd">
                                         <rect key="frame" x="0.0" y="414" width="414" height="360"/>
+                                        <subviews>
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f7m-1P-hax">
+                                                <rect key="frame" x="20" y="20" width="374" height="320"/>
+                                                <subviews>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rmV-3Y-qPz">
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="320"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gauss Blur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-Bj-rbU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="320"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wsi-MQ-qIF">
+                                                                <rect key="frame" x="100.5" y="0.0" width="275.5" height="321"/>
+                                                            </slider>
+                                                        </subviews>
+                                                    </stackView>
+                                                </subviews>
+                                            </stackView>
+                                        </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                        <constraints>
+                                            <constraint firstItem="f7m-1P-hax" firstAttribute="leading" secondItem="KaK-Ma-SNd" secondAttribute="leading" constant="20" id="IXJ-BX-Knj"/>
+                                            <constraint firstItem="f7m-1P-hax" firstAttribute="top" secondItem="KaK-Ma-SNd" secondAttribute="top" constant="20" id="QYH-RC-HHb"/>
+                                            <constraint firstAttribute="bottom" secondItem="f7m-1P-hax" secondAttribute="bottom" constant="20" id="sIX-5w-thX"/>
+                                            <constraint firstAttribute="trailing" secondItem="f7m-1P-hax" secondAttribute="trailing" constant="20" id="zPA-t6-mkT"/>
+                                        </constraints>
                                     </view>
                                 </subviews>
                             </stackView>
@@ -48,6 +75,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="gaussBlurSlider" destination="wsi-MQ-qIF" id="LRq-34-fK1"/>
                         <outlet property="imageView" destination="av8-dy-snJ" id="ztA-Fs-VJU"/>
                     </connections>
                 </viewController>
