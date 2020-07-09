@@ -27,23 +27,44 @@
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="KaK-Ma-SNd">
                                         <rect key="frame" x="0.0" y="414" width="414" height="360"/>
                                         <subviews>
-                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="f7m-1P-hax">
+                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="30" translatesAutoresizingMaskIntoConstraints="NO" id="f7m-1P-hax">
                                                 <rect key="frame" x="20" y="20" width="374" height="320"/>
                                                 <subviews>
                                                     <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="rmV-3Y-qPz">
-                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="320"/>
+                                                        <rect key="frame" x="0.0" y="0.0" width="374" height="30"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Gauss Blur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-Bj-rbU">
-                                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="320"/>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="252" text="Gauss Blur" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gw6-Bj-rbU">
+                                                                <rect key="frame" x="0.0" y="0.0" width="82.5" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
-                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="0.5" minValue="0.0" maxValue="1" translatesAutoresizingMaskIntoConstraints="NO" id="wsi-MQ-qIF">
-                                                                <rect key="frame" x="100.5" y="0.0" width="275.5" height="321"/>
+                                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" minValue="0.0" maxValue="50" translatesAutoresizingMaskIntoConstraints="NO" id="wsi-MQ-qIF">
+                                                                <rect key="frame" x="100.5" y="0.0" width="275.5" height="31"/>
+                                                                <connections>
+                                                                    <action selector="gaussBlurChanged:" destination="3k1-th-poL" eventType="valueChanged" id="zex-vk-jVR"/>
+                                                                </connections>
                                                             </slider>
                                                         </subviews>
                                                     </stackView>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Hii-Kn-ZFi">
+                                                        <rect key="frame" x="0.0" y="60" width="374" height="31"/>
+                                                        <subviews>
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Halftone" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="skR-w7-NVw">
+                                                                <rect key="frame" x="0.0" y="0.0" width="305" height="31"/>
+                                                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                                <nil key="textColor"/>
+                                                                <nil key="highlightedColor"/>
+                                                            </label>
+                                                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" on="YES" translatesAutoresizingMaskIntoConstraints="NO" id="7d6-EB-wrn">
+                                                                <rect key="frame" x="325" y="0.0" width="51" height="31"/>
+                                                            </switch>
+                                                        </subviews>
+                                                    </stackView>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YoT-ux-8Xo">
+                                                        <rect key="frame" x="0.0" y="121" width="374" height="199"/>
+                                                        <state key="normal" title="Save Photo"/>
+                                                    </button>
                                                 </subviews>
                                             </stackView>
                                         </subviews>
@@ -76,6 +97,7 @@
                     </navigationItem>
                     <connections>
                         <outlet property="gaussBlurSlider" destination="wsi-MQ-qIF" id="LRq-34-fK1"/>
+                        <outlet property="halftoneFilterSwitch" destination="7d6-EB-wrn" id="uI5-Hd-hoj"/>
                         <outlet property="imageView" destination="av8-dy-snJ" id="ztA-Fs-VJU"/>
                     </connections>
                 </viewController>

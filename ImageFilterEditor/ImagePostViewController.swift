@@ -14,6 +14,7 @@ class ImagePostViewController: UIViewController {
 
     @IBOutlet weak var imageView: UIImageView!
     @IBOutlet weak var gaussBlurSlider: UISlider!
+    @IBOutlet weak var halftoneFilterSwitch: UISwitch!
     
     var originalImage: UIImage? {
         didSet {
@@ -44,11 +45,12 @@ class ImagePostViewController: UIViewController {
     
     private let context = CIContext()
     private let gaussianBlurFilter = CIFilter.gaussianBlur()
+    private let halftoneFilter = CIFilter.cmykHalftone()
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        // Do any additional setup after loading the view.
+        originalImage = imageView.image
     }
     
     private func image(byFiltering inputImage: CIImage) -> UIImage? {
@@ -86,9 +88,13 @@ class ImagePostViewController: UIViewController {
     
 
     @IBAction func choosePhotoPressed(_ sender: Any) {
-        
+        presentImagePickerController()
     }
-
+    
+    @IBAction func gaussBlurChanged(_ sender: Any) {
+        updateImage()
+    }
+    
 }
 
 extension ImagePostViewController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
